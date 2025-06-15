@@ -41,6 +41,7 @@ gulp.task("scss", () => {
   return gulp.src([
     "src/scss/**/*.scss",
   ])
+    .pipe(plumber())
     .pipe(sassGlob())
     .pipe(gulpSass({ outputStyle: "expanded", indentType: "tab", indentWidth: 1 }))
     .pipe(postcss(cssPlugins))
@@ -68,12 +69,17 @@ gulp.task("ejs", () => {
 		.pipe(gulp.dest("fdocs/"));
 });
 //js
-gulp.task("js", () => {
-	return gulp.src([
-		"src/js/**/*.js"
-	]).pipe(gulp.dest("fdocs/js"));
-});
+// gulp.task("js", () => {
+// 	return gulp.src([
+// 		"src/js/**/*.js"
+// 	]).pipe(gulp.dest("fdocs/js"));
+// });
 //images
+// js
+gulp.task("js", (done) => {
+  // js ファイルを使わない場合は何も処理しない
+  done();
+});
 gulp.task("images", () => {
   return gulp.src([
     "src/images/**/*",
@@ -87,14 +93,13 @@ gulp.task("fabicon", () => {
 });
 
 
-function watchChangeFlie(done) {
-  gulp.watch("src/scss/**/*.scss",   gulp.task("scss"));
-  gulp.watch("src/html/*.html",   gulp.task("html"));
-  gulp.watch("src/ejs/**/*.ejs",  gulp.task("ejs"));
-  gulp.watch("src/js/**/*.js",    gulp.task("js"));
-  gulp.watch("src/images/**/*",   gulp.task("images"));
-  gulp.watch(["src/*.ico", "src/*.png"], gulp.task("fabicon"));
-  done();
+function watchChangeFlie() {
+  gulp.watch("src/scss/**/*.scss", gulp.series("scss"));
+  gulp.watch("src/html/*.html", gulp.series("html"));
+  gulp.watch("src/ejs/**/*.ejs", gulp.series("ejs"));
+  // gulp.watch("src/js/**/*.js", gulp.series("js"));
+  gulp.watch("src/images/**/*", gulp.series("images"));
+  gulp.watch(["src/*.ico", "src/*.png"], gulp.series("fabicon"));
 }
 
 gulp.task("default", gulp.series("vendor", "scss", "html", "ejs", "js", "images", "fabicon", ));
