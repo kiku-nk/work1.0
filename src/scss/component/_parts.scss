@@ -1,5 +1,5 @@
 @use '../foundation/variable' as vars;
-
+@use '../foundation/mixins' as mix;
 /*====================================
 _parts
 見出し、テキストなどの部品
@@ -49,6 +49,21 @@ _parts
     }
     .text {
       margin-top: 1rem;
+    }
+
+  }
+}
+// メディアクエリ
+@include mix.mq-down {
+  .article-list {
+    flex-direction: column;
+    margin: 0 auto;
+    .article-item {
+      width: 100%;
+      &+.article-item {
+        margin-left: 0;
+        margin-top: 3rem;
+      }
     }
   }
 }

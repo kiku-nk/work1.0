@@ -229,6 +229,7 @@ html {
 ------------------------- */
 .body-layout {
 	width: 100%;
+	min-width: 37.5rem;
 	height: 100%;
 	background-color: #fff;
 	overflow: auto;
@@ -241,6 +242,12 @@ html {
 	margin: 8rem auto 0;
 	padding: 0 1.5rem;
 	margin-bottom: 2rem;
+}
+
+/* footer-layout
+------------------------- */
+.footer-layout {
+	text-align: center;
 }
 
 /*====================================
@@ -328,6 +335,19 @@ _parts
 	margin-top: 1rem;
 }
 
+@media screen and (max-width: 768px) {
+	.article-list {
+		flex-direction: column;
+		margin: 0 auto;
+	}
+	.article-list .article-item {
+		width: 100%;
+	}
+	.article-list .article-item + .article-item {
+		margin-left: 0;
+		margin-top: 3rem;
+	}
+}
 /* Page */
 /*====================================
 topページ
@@ -347,6 +367,17 @@ topページ
 	align-items: center;
 	max-width: 53rem;
 	margin: 7rem auto 0;
+}
+@media screen and (max-width: 768px) {
+	.p-top .section-about .cont-area {
+		flex-direction: column;
+	}
+	.p-top .section-about .cont-area .image-circle img {
+		margin-right: 0;
+	}
+	.p-top .section-about .title-text-wrap {
+		margin-top: 1rem;
+	}
 }
 .p-top .section-category .cont-area {
 	display: flex;

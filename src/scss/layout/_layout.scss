@@ -14,6 +14,7 @@ html {
 ------------------------- */
 .body-layout {
   width: 100%;
+  min-width: 37.5rem;
   height: 100%;
   background-color: vars.$whiteColor;
   overflow: auto;
@@ -27,3 +28,8 @@ html {
   margin-bottom: 2rem;
 }
 
+/* footer-layout
+------------------------- */
+.footer-layout {
+  text-align: center;
+}
